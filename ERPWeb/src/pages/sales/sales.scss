@@ -1,3 +1,46 @@
 page-sales {
+    ion-grid {
+        height: 100%;
+        //border: 2px solid black;
+      }
+
+      ion-row {
+        height: 100%;
+      }
+      .left-pane {
+        height: 100%;
+        max-width: 40%;
+        //background-color: red;
+      }
+
+      .right-pane {
+        height: 100%;
+        max-width: 60%;
+        //background-color: blue;
+      }
+
+      ion-card {
+        position: relative;
+        text-align: center;
+        height: 100%;
+        box-shadow:0 10px 20px rgba(0, 0, 0, 0.3);
+      }
+    
+      .card-title {
+        position: absolute;
+        top: 36%;
+        font-size: 2.0em;
+        width: 100%;
+        font-weight: bold;
+        color: #222;
+      }
+    
+      .card-subtitle {
+        font-size: 1.0em;
+        position: absolute;
+        top: 52%;
+        width: 100%;
+        color: #222;
+      }
 
 }

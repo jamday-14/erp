@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 
 /**
  * Generated class for the PurchasingPage page.
@@ -15,11 +15,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class PurchasingPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public menu: MenuController) {
+    this.activateMenu();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PurchasingPage');
+  }
+
+  activateMenu(): any {
+    this.menu.enable(false, 'salesMenu');
+    this.menu.enable(true, 'purchasingMenu');
+    this.menu.enable(false, 'inventoryMenu');
+    this.menu.enable(false, 'accountingMenu');
+    this.menu.enable(false, 'reportsMenu');
   }
 
 }

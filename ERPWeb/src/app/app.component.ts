@@ -2,47 +2,147 @@ import { Component, ViewChild } from '@angular/core';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { TranslateService } from '@ngx-translate/core';
-import { Config, Nav, Platform } from 'ionic-angular';
+import { Config, Platform, Nav } from 'ionic-angular';
 
 import { FirstRunPage } from '../pages';
 import { Settings } from '../providers';
 
 @Component({
-  template: `<ion-menu [content]="content">
+  template: `<ion-menu [content]="content" id="salesMenu">
     <ion-header>
       <ion-toolbar>
-        <ion-title>Pages</ion-title>
+        <ion-title>Sales Menu</ion-title>
       </ion-toolbar>
     </ion-header>
-
     <ion-content>
       <ion-list>
-        <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        <button menuClose ion-item *ngFor="let p of salesPages" (click)="openPage(p)">
           {{p.title}}
         </button>
       </ion-list>
     </ion-content>
+  </ion-menu>
 
+  <ion-menu [content]="content" id="purchasingMenu">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Purchasing Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <button menuClose ion-item *ngFor="let p of purchasingPages" (click)="openPage(p)">
+          {{p.title}}
+        </button>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <ion-menu [content]="content" id="inventoryMenu">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Inventory Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <button menuClose ion-item *ngFor="let p of inventoryPages" (click)="openPage(p)">
+          {{p.title}}
+        </button>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <ion-menu [content]="content" id="accountingMenu">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Accounting Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <button menuClose ion-item *ngFor="let p of accountingPages" (click)="openPage(p)">
+          {{p.title}}
+        </button>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <ion-menu [content]="content" id="reportsMenu">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Reports Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <button menuClose ion-item *ngFor="let p of reportsPages" (click)="openPage(p)">
+          {{p.title}}
+        </button>
+      </ion-list>
+    </ion-content>
   </ion-menu>
   <ion-nav #content [root]="rootPage"></ion-nav>`
 })
+
+@Component({
+  templateUrl: 'app.html'
+})
+
 export class MyApp {
   rootPage = FirstRunPage;
 
   @ViewChild(Nav) nav: Nav;
 
-  pages: any[] = [
-    { title: 'Tutorial', component: 'TutorialPage' },
-    { title: 'Welcome', component: 'WelcomePage' },
-    { title: 'Tabs', component: 'TabsPage' },
-    { title: 'Cards', component: 'CardsPage' },
-    { title: 'Content', component: 'ContentPage' },
-    { title: 'Login', component: 'LoginPage' },
-    { title: 'Signup', component: 'SignupPage' },
-    { title: 'Master Detail', component: 'ListMasterPage' },
-    { title: 'Menu', component: 'MenuPage' },
-    { title: 'Settings', component: 'SettingsPage' },
-    { title: 'Search', component: 'SearchPage' }
+  salesPages: any[] = [
+    { title: 'Home', component: 'HomePage' },
+    { title: 'Dashboard', component: 'SalesPage' },
+    { title: 'Sales Quotation', component: 'SalesQuotationPage' },
+    { title: 'Sales Order', component: 'SalesOrderPage' },
+    { title: 'Delivery Receipt', component: 'DeliveryReceiptPage' },
+    { title: 'Sales Invoice', component: 'SalesInvoicePage' },
+    { title: 'Sales Return', component: 'SalesReturnPage' }
+  ]
+
+  purchasingPages: any[] = [
+    { title: 'Home', component: 'HomePage' },
+    { title: 'Dashboard', component: 'PurchasingPage' },
+    { title: 'Purchase Request', component: 'PurchaseRequestPage' },
+    { title: 'Purchase Order', component: 'PurchaseOrderPage' },
+    { title: 'Goods Receipt', component: 'GoodsReceiptPage' },
+    { title: 'Goods Return', component: 'GoodsReturnPage' },
+    { title: 'Bills', component: 'BillsPage' },
+    { title: 'Bills Payment', component: 'BillsPaymentPage' }
+  ]
+
+  inventoryPages: any[] = [
+    { title: 'Home', component: 'HomePage' },
+    { title: 'Dashboard', component: 'InventoryPage' },
+    { title: 'Inventory Adjustment', component: 'InventoryAdjustmentPage' },
+    { title: 'Relocate Goods', component: 'RelocateGoodsPage' },
+    { title: 'Physical Inventory', component: 'PhysicalInventoryPage' }
+  ]
+
+  accountingPages: any[] = [
+    { title: 'Home', component: 'HomePage' },
+    { title: 'Dashboard', component: 'AccountingPage' },
+    { title: 'Charts of Accounts', component: 'ChartsOfAccountsPage' },
+    { title: 'Subsidiary', component: 'SubsidiaryPage' },
+    { title: 'Journal Voucher', component: 'JournalVoucherPage' },
+    { title: 'Check Voucher', component: 'CheckVoucherPage' },
+    { title: 'Cash Receipt Voucher', component: 'CashReceiptVoucherPage' }
+  ]
+
+  reportsPages: any[] = [
+    { title: 'Home', component: 'HomePage' },
+    { title: 'Dashboard', component: 'ReportsPage' },
+    { title: 'Inventory Balance', component: 'InventoryBalancePage' },
+    { title: 'Inventory Ledger', component: 'InventoryLedgerPage' },
+    { title: 'Trial Balance', component: 'TrialBalancePage' },
+    { title: 'General Ledger', component: 'GeneralLedgerPage' },
+    { title: 'Subsidiary Ledger', component: 'SubsidiaryLedgerPage' },
+    { title: 'Balance Sheet', component: 'BalanceSheetPage' },
+    { title: 'Income Statement', component: 'IncomeStatementPage' },
   ]
 
   constructor(private translate: TranslateService, platform: Platform, settings: Settings, private config: Config, private statusBar: StatusBar, private splashScreen: SplashScreen) {

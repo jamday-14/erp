@@ -14,5 +14,60 @@
 
 
 <ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="left-pane">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-card>
+                <div class="card-title">Your graph here</div>
+                <div class="card-subtitle"></div>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-card>
+                <div class="card-title">Your graph here</div>
+                <div class="card-subtitle"></div>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+      <ion-col class="right-pane">
+        <ion-card>
+          <ion-card-header>
+              <div>Newly Added Sales Order</div>
+          </ion-card-header>
+          
+          <div>
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <ion-item>
+                    <ion-label>FROM</ion-label>
+                    <ion-datetime displayFormat="MMM DD, YYYY" [(ngModel)]="fromDate"></ion-datetime>
+                  </ion-item>
+                </ion-col>
+                <ion-col>
+                  <ion-item>
+                    <ion-label>TO</ion-label>
+                    <ion-datetime displayFormat="MMM DD, YYYY" [(ngModel)]="toDate"></ion-datetime>
+                  </ion-item>
+                </ion-col>
+                <ion-col>
+                    <ion-item>
+                        <button ion-button full>Search</button>
+                      </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
 
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

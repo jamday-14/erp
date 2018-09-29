@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 
 /**
  * Generated class for the AccountingPage page.
@@ -15,11 +15,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AccountingPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public menu: MenuController) {
+    this.activateMenu();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AccountingPage');
+  }
+
+  activateMenu(): any {
+    this.menu.enable(false, 'salesMenu');
+    this.menu.enable(false, 'purchasingMenu');
+    this.menu.enable(false, 'inventoryMenu');
+    this.menu.enable(true, 'accountingMenu');
+    this.menu.enable(false, 'reportsMenu');
   }
 
 }
