@@ -1,0 +1,7 @@
+{
+  "name": "ERPWeb",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
