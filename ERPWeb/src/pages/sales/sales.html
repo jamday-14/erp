@@ -7,17 +7,20 @@
 <ion-header>
 
   <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>Sales Module</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-  <ion-grid>
+<ion-content>
+  <ion-grid no-padding>
     <ion-row>
-      <ion-col class="left-pane">
-        <ion-grid>
+      <ion-col col-12 col-md-4>
+        <ion-grid no-padding>
           <ion-row>
             <ion-col>
               <ion-card>
@@ -36,36 +39,24 @@
           </ion-row>
         </ion-grid>
       </ion-col>
-      <ion-col class="right-pane">
+      <ion-col col-12 col-md-8>
         <ion-card>
           <ion-card-header>
-              <div>Newly Added Sales Order</div>
+            <div>Newly Added Sales Order</div>
           </ion-card-header>
-          
-          <div>
-            <ion-grid>
-              <ion-row>
-                <ion-col>
-                  <ion-item>
-                    <ion-label>FROM</ion-label>
-                    <ion-datetime displayFormat="MMM DD, YYYY" [(ngModel)]="fromDate"></ion-datetime>
-                  </ion-item>
-                </ion-col>
-                <ion-col>
-                  <ion-item>
-                    <ion-label>TO</ion-label>
-                    <ion-datetime displayFormat="MMM DD, YYYY" [(ngModel)]="toDate"></ion-datetime>
-                  </ion-item>
-                </ion-col>
-                <ion-col>
-                    <ion-item>
-                        <button ion-button full>Search</button>
-                      </ion-item>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </div>
-
+          <ion-list>
+            <ion-item>
+              <ion-label>FROM</ion-label>
+              <ion-datetime displayFormat="MMM DD, YYYY" [(ngModel)]="fromDate"></ion-datetime>
+            </ion-item>
+            <ion-item>
+              <ion-label>TO</ion-label>
+              <ion-datetime displayFormat="MMM DD, YYYY" [(ngModel)]="toDate"></ion-datetime>
+            </ion-item>
+            <ion-item>
+              <button ion-button full>Search</button>
+            </ion-item>
+          </ion-list>
         </ion-card>
       </ion-col>
     </ion-row>

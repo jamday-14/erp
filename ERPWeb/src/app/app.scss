@@ -18,3 +18,67 @@
 html {
     font-size: 40%;
 }
+
+.toolbar-background{
+    background-color: #0071bc;
+}
+
+.toolbar-title{
+    color: #fff;
+}
+
+.bar-button{
+    color: #fff;
+}
+
+.searchbar-md .searchbar-search-icon{
+    left: 15px;
+    top: 6px;
+}
+
+.searchbar-ios{
+    background: none;
+}
+
+.searchbar-ios .searchbar-search-icon{
+    top: 6px;
+}
+
+.item-input .label-md, .item-select .label-md, .item-datetime .label-md {
+    color: black;
+}
+
+.split-pane-side {
+    // border-bottom-right-radius: 10px;
+    // border-top-right-radius: 10px;
+    //border-right: 0px !important;
+ }
+ 
+ .menu-container {
+    background-color: white;
+ }
+ 
+ .transparent {
+    background: transparent;
+ }
+ 
+ .list-item {
+    color: black;
+    font-size: 2rem;
+ }
+ 
+ :hover.list-item {
+    background: color($colors, primary);
+    color: white;
+ }
+ 
+ .scroll-content{
+     overflow: hidden;
+    // margin-right: -17px;
+    // overflow-y: scroll;
+ }
+
+ .split-pane-main {
+    // border-bottom-left-radius: 10px;
+    // border-top-left-radius: 10px;
+ }

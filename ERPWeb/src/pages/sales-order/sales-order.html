@@ -7,12 +7,76 @@
 <ion-header>
 
   <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>Sales Order</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
-<ion-content padding>
-
+<ion-content>
+  <ion-grid no-padding>
+    <ion-row>
+      <ion-col col-12 col-sm>
+        <ion-item>
+          <ion-label fixed>Date</ion-label>
+          <ion-datetime displayFormat="MMM DD, YYYY" [(ngModel)]="order.orderDate"></ion-datetime>
+        </ion-item>
+      </ion-col>
+      <ion-col col-12 col-sm>
+        <ion-item>
+          <ion-label fixed>Reference No.</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12 col-md-12 col-xl-6 col-lg-4>
+        <button ion-item (click)="goto('CustomerSearchPage')">
+          <ion-label>Customer</ion-label>
+          <ion-note item-end>{{order.company}}</ion-note>
+        </button>
+      </ion-col>
+      <ion-col col-12 col-md-6 col-xl-3 col-lg-4>
+        <ion-item>
+          <ion-label fixed>Telephone No.</ion-label>
+          <ion-input type="tel"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-12 col-md-6 col-xl-3 col-lg-4>
+        <ion-item>
+          <ion-label fixed float-left>Fax No.</ion-label>
+          <ion-input type="tel"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label fixed>Address</ion-label>
+          <ion-textarea></ion-textarea>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>
+        <ion-item>
+            <button ion-button item-start outline color="dark" (click)="goto('SalesOrderItemPage')">
+                <i class="fa fa-unlock" aria-hidden="true">&nbsp;</i>
+                ADD LINE ITEMS</button>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-list>
+    <ion-item *ngFor="let item of order.items">
+      <h2>{{ item.code }}</h2>
+      <p>{{item.description}}</p>
+      <ion-note item-end>{{item.subTotal}}</ion-note>
+    </ion-item>
+    <ion-item>
+      <strong>Total : {{order.total}}</strong>
+    </ion-item>
+  </ion-list>
 </ion-content>

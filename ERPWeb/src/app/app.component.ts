@@ -8,15 +8,17 @@ import { FirstRunPage } from '../pages';
 import { Settings } from '../providers';
 
 @Component({
-  template: `<ion-menu [content]="content" id="salesMenu">
+  template: `
+  <ion-split-pane>
+  <ion-menu [content]="content" id="salesMenu">
     <ion-header>
       <ion-toolbar>
         <ion-title>Sales Menu</ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content>
+    <ion-content class="menu-container">
       <ion-list>
-        <button menuClose ion-item *ngFor="let p of salesPages" (click)="openPage(p)">
+        <button menuClose ion-item *ngFor="let p of salesPages" (click)="openPage(p)" class="transparent list-item">
           {{p.title}}
         </button>
       </ion-list>
@@ -82,7 +84,7 @@ import { Settings } from '../providers';
       </ion-list>
     </ion-content>
   </ion-menu>
-  <ion-nav #content [root]="rootPage"></ion-nav>`
+  <ion-nav #content [root]="rootPage" main></ion-nav></ion-split-pane>`
 })
 
 @Component({
