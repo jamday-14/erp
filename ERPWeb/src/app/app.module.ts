@@ -12,6 +12,8 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { Items } from '../mocks/providers/items';
 import { Settings, User, Api } from '../providers';
 import { MyApp } from './app.component';
+import { CustomerInfoPage } from '../pages/customer-info/customer-info';
+import { CustomerTransactionPage } from '../pages/customer-transaction/customer-transaction';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -36,7 +38,9 @@ export function provideSettings(storage: Storage) {
 
 @NgModule({
   declarations: [
-    MyApp
+    MyApp,
+    CustomerInfoPage,
+    CustomerTransactionPage
   ],
   imports: [
     BrowserModule,
@@ -48,12 +52,14 @@ export function provideSettings(storage: Storage) {
         deps: [HttpClient]
       }
     }),
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, { tabsPlacement: 'top' }),
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp
+    MyApp,
+    CustomerInfoPage,
+    CustomerTransactionPage
   ],
   providers: [
     Api,

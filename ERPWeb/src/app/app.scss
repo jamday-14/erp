@@ -18,6 +18,9 @@
 html {
     font-size: 40%;
 }
+.pad5 {
+    padding: 5px;
+}
 
 .toolbar-background{
     background-color: #0071bc;
@@ -64,13 +67,16 @@ html {
  
  .list-item {
     color: black;
-    font-size: 2rem;
  }
- 
  :hover.list-item {
     background: color($colors, primary);
     color: white;
  }
+
+ .list-item .list-item .activated {
+	background: color($colors, primary);
+    color: white;
+}
  
  .scroll-content{
      overflow: hidden;
@@ -82,3 +88,30 @@ html {
     // border-bottom-left-radius: 10px;
     // border-top-left-radius: 10px;
  }
+ .tabs-md .tabbar {
+    background: white;
+}
+// all tabs texts
+.tabs-md .tab-button-text {
+	color: black;
+}
+// selected tab
+.tabs-md .tab-button[aria-selected=true] {
+	background: color($colors, primary);
+    color: white;
+}
+
+.tabs-md .tab-button[aria-selected=true] .tab-button-text{
+    color: white;
+}
+
+.item-divider-md{
+    font-weight: bold;
+    color: color($colors, primary);
+    padding: 0 !important;
+    border-bottom: solid 1.5px color($colors, secondary);
+}
+
+ 
+
+ 

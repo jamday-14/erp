@@ -10,80 +10,94 @@ import { Settings } from '../providers';
 @Component({
   template: `
   <ion-split-pane>
-  <ion-menu [content]="content" id="salesMenu">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Sales Menu</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content class="menu-container">
-      <ion-list>
-        <button menuClose ion-item *ngFor="let p of salesPages" (click)="openPage(p)" class="transparent list-item">
-          {{p.title}}
-        </button>
-      </ion-list>
-    </ion-content>
-  </ion-menu>
+    <ion-menu [content]="content" id="salesMenu">
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Sales Menu</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="menu-container">
+        <ion-list>
+          <button menuClose ion-item *ngFor="let p of salesPages" (click)="openPage(p)" class="transparent list-item">
+            {{p.title}}
+          </button>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
 
-  <ion-menu [content]="content" id="purchasingMenu">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Purchasing Menu</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content>
-      <ion-list>
-        <button menuClose ion-item *ngFor="let p of purchasingPages" (click)="openPage(p)">
-          {{p.title}}
-        </button>
-      </ion-list>
-    </ion-content>
-  </ion-menu>
+    <ion-menu [content]="content" id="purchasingMenu">
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Purchasing Menu</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="menu-container">
+        <ion-list>
+          <button menuClose ion-item *ngFor="let p of purchasingPages" (click)="openPage(p)" class="transparent list-item">
+            {{p.title}}
+          </button>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
 
-  <ion-menu [content]="content" id="inventoryMenu">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Inventory Menu</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content>
-      <ion-list>
-        <button menuClose ion-item *ngFor="let p of inventoryPages" (click)="openPage(p)">
-          {{p.title}}
-        </button>
-      </ion-list>
-    </ion-content>
-  </ion-menu>
+    <ion-menu [content]="content" id="inventoryMenu">
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Inventory Menu</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="menu-container">
+        <ion-list>
+          <button menuClose ion-item *ngFor="let p of inventoryPages" (click)="openPage(p)" class="transparent list-item">
+            {{p.title}}
+          </button>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
 
-  <ion-menu [content]="content" id="accountingMenu">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Accounting Menu</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content>
-      <ion-list>
-        <button menuClose ion-item *ngFor="let p of accountingPages" (click)="openPage(p)">
-          {{p.title}}
-        </button>
-      </ion-list>
-    </ion-content>
-  </ion-menu>
+    <ion-menu [content]="content" id="accountingMenu">
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Accounting Menu</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="menu-container">
+        <ion-list>
+          <button menuClose ion-item *ngFor="let p of accountingPages" (click)="openPage(p)" class="transparent list-item">
+            {{p.title}}
+          </button>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
 
-  <ion-menu [content]="content" id="reportsMenu">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Reports Menu</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content>
-      <ion-list>
-        <button menuClose ion-item *ngFor="let p of reportsPages" (click)="openPage(p)">
-          {{p.title}}
-        </button>
-      </ion-list>
-    </ion-content>
-  </ion-menu>
+    <ion-menu [content]="content" id="reportsMenu">
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Reports Menu</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="menu-container">
+        <ion-list>
+          <button menuClose ion-item *ngFor="let p of reportsPages" (click)="openPage(p)" class="transparent list-item">
+            {{p.title}}
+          </button>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-menu [content]="content" id="maintenanceMenu">
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Maintenance</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="menu-container">
+        <ion-list>
+          <button menuClose ion-item *ngFor="let p of maintenancePages" (click)="openPage(p)" class="transparent list-item">
+            {{p.title}}
+          </button>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
   <ion-nav #content [root]="rootPage" main></ion-nav></ion-split-pane>`
 })
 
@@ -147,6 +161,12 @@ export class MyApp {
     { title: 'Income Statement', component: 'IncomeStatementPage' },
   ]
 
+  maintenancePages: any[] = [
+    { title: 'Home', component: 'HomePage' },
+    { title: 'Dashboard', component: 'MaintenancePage' },
+    { title: 'Customer', component: 'CustomerPage' },
+    { title: 'Item', component: 'ItemPage' }
+  ]
   constructor(private translate: TranslateService, platform: Platform, settings: Settings, private config: Config, private statusBar: StatusBar, private splashScreen: SplashScreen) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.

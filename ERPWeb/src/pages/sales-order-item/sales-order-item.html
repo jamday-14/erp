@@ -14,7 +14,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid  no-padding>
+  <ion-grid no-padding>
     <ion-row>
       <ion-col>
         <button ion-item (click)="goto('ItemSearchPage')">
@@ -27,26 +27,26 @@
     <ion-row>
       <ion-col col-12 col-sm-6 col-md-6 col-xl-3 col-lg-3>
         <ion-item>
-          <ion-label fixed>Qty</ion-label>
+          <ion-label>Qty</ion-label>
           <ion-input type="number" [(ngModel)]="item.qty" name="qty"></ion-input>
         </ion-item>
       </ion-col>
       <ion-col col-12 col-sm-6 col-md-6 col-xl-3 col-lg-3>
         <ion-item>
-          <ion-label fixed>Qty DR</ion-label>
+          <ion-label>Qty DR</ion-label>
           <ion-note item-end>{{item.qtyDR}}</ion-note>
         </ion-item>
 
       </ion-col>
       <ion-col col-12 col-sm-6 col-md-6 col-xl-3 col-lg-3>
         <ion-item>
-          <ion-label fixed>Qty Invoice</ion-label>
+          <ion-label>Qty Invoice</ion-label>
           <ion-note item-end>{{item.qtyInvoice}}</ion-note>
         </ion-item>
       </ion-col>
       <ion-col col-12 col-sm-6 col-md-6 col-xl-3 col-lg-3>
         <ion-item>
-          <ion-label fixed>Qty Onhand</ion-label>
+          <ion-label>Qty Onhand</ion-label>
           <ion-note item-end>{{item.qtyOnHand}}</ion-note>
         </ion-item>
       </ion-col>
@@ -60,20 +60,20 @@
       </ion-col>
       <ion-col col-12 col-sm-6 col-md-6 col-xl-3 col-lg-3>
         <ion-item>
-          <ion-label fixed>Unit Price</ion-label>
+          <ion-label>Unit Price</ion-label>
           <ion-input type="number" [(ngModel)]="item.unitPrice" name="unitPrice"></ion-input>
         </ion-item>
       </ion-col>
       <ion-col col-12 col-sm-6 col-md-6 col-xl-3 col-lg-3>
         <ion-item>
-          <ion-label fixed>Discount</ion-label>
+          <ion-label>Discount</ion-label>
           <ion-input type="number"></ion-input>
         </ion-item>
 
       </ion-col>
       <ion-col col-12 col-sm-6 col-md-6 col-xl-3 col-lg-3>
         <ion-item>
-          <ion-label fixed>Subtotal</ion-label>
+          <ion-label>Subtotal</ion-label>
           <ion-note item-end>{{subTotal}}</ion-note>
         </ion-item>
       </ion-col>
@@ -81,7 +81,7 @@
     <ion-row>
       <ion-col>
         <ion-item>
-          <ion-label fixed>Remarks</ion-label>
+          <ion-label>Remarks</ion-label>
           <ion-textarea></ion-textarea>
         </ion-item>
       </ion-col>

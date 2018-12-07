@@ -1,46 +1,84 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{ 'ITEM_CREATE_TITLE' | translate }}</ion-title>
-    <ion-buttons start>
-      <button ion-button (click)="cancel()">
-        <span color="primary" showWhen="ios">
-          {{ 'CANCEL_BUTTON' | translate }}
-        </span>
-        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
-      </button>
-    </ion-buttons>
-    <ion-buttons end>
+    <ion-title>New Item</ion-title>
+    <!-- <ion-buttons end>
       <button ion-button (click)="done()" [disabled]="!isReadyToSave" strong>
         <span color="primary" showWhen="ios">
           {{ 'DONE_BUTTON' | translate }}
         </span>
         <ion-icon name="md-checkmark" showWhen="core,android,windows"></ion-icon>
       </button>
-    </ion-buttons>
+    </ion-buttons> -->
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
+  <ion-fab top right edge #fab1>
+    <button ion-fab mini (click)="done()" [disabled]="!isReadyToSave">
+      <ion-icon name="md-checkmark"></ion-icon>
+    </button>
+  </ion-fab>
   <form *ngIf="form" [formGroup]="form" (ngSubmit)="createItem()">
     <input type="file" #fileInput style="visibility: hidden; height: 0px" name="files[]" (change)="processWebImage($event)" />
     <div class="profile-image-wrapper" (click)="getPicture()">
       <div class="profile-image-placeholder" *ngIf="!this.form.controls.profilePic.value">
         <ion-icon name="add"></ion-icon>
         <div>
-          {{ 'ITEM_CREATE_CHOOSE_IMAGE' | translate }}
+          Add Image
         </div>
       </div>
       <div class="profile-image" [style.backgroundImage]="getProfileImageStyle()" *ngIf="this.form.controls.profilePic.value"></div>
     </div>
     <ion-list>
       <ion-item>
-        <ion-input type="text" placeholder="{{ 'ITEM_NAME_PLACEHOLDER' | translate }}" formControlName="name"></ion-input>
+        <ion-label>Item Code</ion-label>
+        <ion-input type="text" formControlName='itemCode'></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input type="text" placeholder="{{ 'ITEM_ABOUT_PLACEHOLDER' | translate }}" formControlName="about"></ion-input>
+        <ion-label>Description</ion-label>
+        <ion-input type="text" formControlName='description'></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Unit Price</ion-label>
+        <ion-input type="number" formControlName='unitPrice'></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Cost Price</ion-label>
+        <ion-input type="number" formControlName='costPrice'></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Unit</ion-label>
+        <ion-select okText="OK" cancelText="CANCEL"  formControlName='unitId'>
+          <ion-option value="nes">NES</ion-option>
+          <ion-option value="n64">Nintendo64</ion-option>
+          <ion-option value="ps">PlayStation</ion-option>
+          <ion-option value="genesis">Sega Genesis</ion-option>
+          <ion-option value="saturn">Sega Saturn</ion-option>
+          <ion-option value="snes">SNES</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Quantity</ion-label>
+        <ion-input type="number" formControlName='quantity'></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Is Purchased</ion-label>
+        <ion-checkbox formControlName='ispurchased'></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Is For Sale</ion-label>
+        <ion-checkbox formControlName='isForSale'></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Is Inventory</ion-label>
+        <ion-checkbox formControlName='isInventory'></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Is Imported</ion-label>
+        <ion-checkbox formControlName='isImported'></ion-checkbox>
       </ion-item>
     </ion-list>
   </form>
