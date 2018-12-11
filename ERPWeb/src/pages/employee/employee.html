@@ -1,5 +1,5 @@
 <!--
-  Generated template for the ItemPage page.
+  Generated template for the EmployeePage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -10,9 +10,11 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Items</ion-title>
+    <ion-title>Employees</ion-title>
   </ion-navbar>
+
 </ion-header>
+
 
 <ion-content padding>
   <ion-fab top right edge #fab1>
@@ -20,24 +22,15 @@
       <ion-icon name="md-add"></ion-icon>
     </button>
   </ion-fab>
-  <ion-searchbar placeholder="Search by item code or item description" (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-searchbar placeholder="Search by last name, first name" (ionInput)="getItems($event)"></ion-searchbar>
   <ion-list>
     <button detail-none (click)="expandItem(item)" ion-item *ngFor="let item of items">
-      <!-- <ion-thumbnail item-start>
-        <img src="http://placehold.it/100">
-      </ion-thumbnail> -->
-      <h2>Item Code : {{item.itemCode}}</h2>
-      <p>Unit Price: {{item.unitPrice}}</p>
+      <h2>First Name : {{item.firstName}}</h2>
+      <p>Last Name: {{item.lastName}}</p>
       <expandable [expandHeight]="itemExpandHeight" [expanded]="item.expanded">
-        {{item.description}}
+        {{item.address}}
       </expandable>
       <button ion-button clear item-end>View</button>
     </button>
   </ion-list>
-  <ion-infinite-scroll (ionInfinite)="doInfinite($event)" threshold="100px">
-      <ion-infinite-scroll-content
-        loadingSpinner="bubbles"
-        loadingText="Loading more data...">
-      </ion-infinite-scroll-content>
-    </ion-infinite-scroll>
 </ion-content>

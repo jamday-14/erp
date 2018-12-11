@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, ToastController, LoadingController } from 'ionic-angular';
 
-import { User, Settings } from '../../providers';
+import { User, Settings, Menu } from '../../providers';
 import { MainPage } from '../';
 
 @IonicPage()
@@ -30,15 +30,16 @@ export class LoginPage {
     public settings: Settings,
     public toastCtrl: ToastController,
     public loadingCtrl: LoadingController,
-    public translateService: TranslateService) {
+    public translateService: TranslateService,
+    public menu: Menu) {
 
     this.translateService.get('LOGIN_ERROR').subscribe((value) => {
       this.loginErrorString = value;
     })
 
-    this.settings.load().then(() => {
-      
-    });
+    this.settings.load().then(() => { });
+
+    this.menu.activateMenu(false, false, false, false, false, false);
   }
 
   // Attempt to login in through our User service

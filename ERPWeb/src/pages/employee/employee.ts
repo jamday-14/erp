@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, InfiniteScroll, LoadingController } from 'ionic-angular';
-
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { Maintenance, Menu } from '../../providers';
 
-
 /**
- * Generated class for the ItemPage page.
+ * Generated class for the EmployeePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -13,11 +11,10 @@ import { Maintenance, Menu } from '../../providers';
 
 @IonicPage()
 @Component({
-  selector: 'page-item',
-  templateUrl: 'item.html',
+  selector: 'page-employee',
+  templateUrl: 'employee.html',
 })
-
-export class ItemPage {
+export class EmployeePage {
 
   currentIndex = 0;
   listSize = 50;
@@ -34,19 +31,16 @@ export class ItemPage {
     public maintenanceProvider: Maintenance,
     public loadingCtrl: LoadingController,
     public menu: Menu) {
-
   }
 
   ionViewDidLoad() {
-
     this.menu.activateMenu(false, false, false, false, false, true);
-
     this.getData();
   }
 
   private getData() {
     this.loader.present();
-    this.maintenanceProvider.queryItems().subscribe((resp) => {
+    this.maintenanceProvider.queryEmployees().subscribe((resp) => {
       this.records = resp;
       this.items = this.records.slice(this.currentIndex, this.listSize);
       this.items.forEach(x => x.expandable = false);
@@ -70,36 +64,5 @@ export class ItemPage {
         })
         .slice(this.currentIndex, this.listSize);
     }
-  }
-
-  doInfinite(infiniteScroll: InfiniteScroll) {
-
-    this.currentIndex++;
-    this.items = this.records.slice(0, (this.listSize * this.currentIndex));
-    infiniteScroll.complete();
-
-    if (this.items.length > 90) {
-      infiniteScroll.enable(false);
-    }
-
-  }
-  
-  expandItem(item) {
-
-    this.items.map((listItem) => {
-
-      if (item == listItem) {
-        listItem.expanded = !listItem.expanded;
-      } else {
-        listItem.expanded = false;
-      }
-
-      return listItem;
-
-    });
-  }
-
-  new() {
-    this.navCtrl.push("ItemCreatePage");
   }
 }

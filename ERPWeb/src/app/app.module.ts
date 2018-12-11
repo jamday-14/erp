@@ -16,6 +16,9 @@ import { CustomerInfoPage } from '../pages/customer-info/customer-info';
 import { CustomerTransactionPage } from '../pages/customer-transaction/customer-transaction';
 import { AuthProvider } from '../providers/auth/auth';
 import { Maintenance } from '../providers/maintenance/maintenance';
+import { Menu } from '../providers/menu/menu';
+import { ComponentsModule } from '../components/components.module';
+
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -42,7 +45,7 @@ export function provideSettings(storage: Storage) {
   declarations: [
     MyApp,
     CustomerInfoPage,
-    CustomerTransactionPage
+    CustomerTransactionPage,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +58,8 @@ export function provideSettings(storage: Storage) {
       }
     }),
     IonicModule.forRoot(MyApp, { tabsPlacement: 'top' }),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    ComponentsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -77,7 +81,8 @@ export function provideSettings(storage: Storage) {
       useClass: AuthProvider,
       multi: true
     },
-    Maintenance
+    Maintenance,
+    Menu
     
   ]
 })

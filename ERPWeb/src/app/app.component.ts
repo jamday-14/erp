@@ -2,10 +2,11 @@ import { Component, ViewChild } from '@angular/core';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { TranslateService } from '@ngx-translate/core';
-import { Config, Platform, Nav } from 'ionic-angular';
+import { Config, Platform, Nav, Events, ToastController } from 'ionic-angular';
 
 import { FirstRunPage } from '../pages';
 import { Settings } from '../providers';
+import { LoginPage } from '../pages/login/login';
 
 @Component({
   template: `
@@ -165,9 +166,17 @@ export class MyApp {
     { title: 'Home', component: 'HomePage' },
     { title: 'Dashboard', component: 'MaintenancePage' },
     { title: 'Customer', component: 'CustomerPage' },
-    { title: 'Item', component: 'ItemPage' }
+    { title: 'Item', component: 'ItemPage' },
+    { title: 'Employee', component: 'EmployeePage' }
   ]
-  constructor(private translate: TranslateService, platform: Platform, settings: Settings, private config: Config, private statusBar: StatusBar, private splashScreen: SplashScreen) {
+  constructor(private translate: TranslateService,
+    platform: Platform, settings: Settings,
+    private config: Config,
+    private statusBar: StatusBar,
+    private splashScreen: SplashScreen,
+    private events: Events,
+    public toastCtrl: ToastController) {
+
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -175,6 +184,28 @@ export class MyApp {
       this.splashScreen.hide();
     });
     this.initTranslate();
+
+    this.listenToEvents();
+  }
+
+  private listenToEvents() {
+    this.events.subscribe("unauthorized:requestError", () => {
+      this.nav.setRoot(LoginPage);
+      const alert = this.toastCtrl.create({
+        message: "Your credentials have expired.  Please log back in.",
+        duration: 3000,
+        position: 'top'
+      });
+      alert.present();
+    });
+    this.events.subscribe("timeout:requestError", () => {
+      const alert = this.toastCtrl.create({
+        message: "Please refresh or try your request again.",
+        duration: 3000,
+        position: 'top'
+      });
+      alert.present();
+    });
   }
 
   initTranslate() {
@@ -201,6 +232,7 @@ export class MyApp {
     this.translate.get(['BACK_BUTTON_TEXT']).subscribe(values => {
       this.config.set('ios', 'backButtonText', values.BACK_BUTTON_TEXT);
     });
+
   }
 
   openPage(page) {
@@ -208,4 +240,6 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
+
+
 }

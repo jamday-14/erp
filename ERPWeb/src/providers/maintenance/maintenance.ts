@@ -8,22 +8,49 @@ import { Api } from '..';
   and Angular DI.
 */
 @Injectable()
-export class Maintenance {
-  
+export class Maintenance { 
 
   constructor(public api: Api) {
 
   }
 
-  public queryItems(params?: any) {
+  queryItems(params?: any) {
     return this.api.get('maintenance/items', params);
   }
 
-  public addItem(item: any){
+  queryEmployees(params?: any) {
+    return this.api.get('maintenance/employees', params);
+  }
+
+  addItem(item: any){
     return this.api.post('maintenance/items', item)
   }
 
-  queryUnits(params?: any): any {
+  queryUnits(params?: any) {
     return this.api.get('maintenance/units', params);
+  }
+
+  queryCustomerTypes(params?: any){
+    return this.api.get('maintenance/customer-types', params);
+  }
+
+  queryBanks(params?: any){
+    return this.api.get('maintenance/banks', params);
+  }
+
+  queryPaymentModes(params?: any){
+    return this.api.get('maintenance/payment-modes', params);
+  }
+
+  queryPriceCategories(params?: any){
+    return this.api.get('maintenance/price-categories', params);
+  }
+
+  queryTerms(params?: any){
+    return this.api.get('maintenance/terms', params);
+  }
+
+  queryWarehouses(params?: any){
+    return this.api.get('maintenance/warehouses', params);
   }
 }

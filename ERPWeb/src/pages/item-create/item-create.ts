@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Camera } from '@ionic-native/camera';
 import { IonicPage, NavController, ViewController, LoadingController, ToastController } from 'ionic-angular';
-import { Maintenance } from '../../providers';
+import { Maintenance, Menu } from '../../providers';
 
 @IonicPage()
 @Component({
@@ -28,7 +28,8 @@ export class ItemCreatePage {
     public camera: Camera,
     private maintenanceProvider: Maintenance,
     public loadingCtrl: LoadingController,
-    public toastCtrl: ToastController, ) {
+    public toastCtrl: ToastController, 
+    public menu: Menu) {
 
     this.form = formBuilder.group({
       profilePic: [''],
@@ -51,10 +52,15 @@ export class ItemCreatePage {
   }
 
   ionViewDidLoad() {
+    this.menu.activateMenu(false, false, false, false, false, true);
+
+    this.getData();
+  }
+
+  private getData() {
     this.maintenanceProvider.queryUnits().subscribe((resp) => {
       this.units = resp;
     }, (err) => {
-
     });
   }
 
