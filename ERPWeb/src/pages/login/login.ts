@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, ToastController, LoadingController } from 'ionic-angular';
 
-import { User } from '../../providers';
+import { User, Settings } from '../../providers';
 import { MainPage } from '../';
 
 @IonicPage()
@@ -21,26 +21,34 @@ export class LoginPage {
 
   // Our translated text strings
   private loginErrorString: string;
+  loader = this.loadingCtrl.create({
+    content: "Logging in. Please wait..."
+  });
 
   constructor(public navCtrl: NavController,
     public user: User,
+    public settings: Settings,
     public toastCtrl: ToastController,
+    public loadingCtrl: LoadingController,
     public translateService: TranslateService) {
 
     this.translateService.get('LOGIN_ERROR').subscribe((value) => {
       this.loginErrorString = value;
     })
+
+    this.settings.load().then(() => {
+      
+    });
   }
 
   // Attempt to login in through our User service
   doLogin() {
+    this.loader.present();
     this.user.login(this.account).subscribe((resp) => {
-      //this.navCtrl.push(MainPage);
+      this.loader.dismiss();
       this.navCtrl.setRoot(MainPage);
     }, (err) => {
-      //this.navCtrl.push(MainPage);
-      this.navCtrl.setRoot(MainPage);
-      // Unable to log in
+      this.loader.dismiss();
       let toast = this.toastCtrl.create({
         message: this.loginErrorString,
         duration: 3000,

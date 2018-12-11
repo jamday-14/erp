@@ -1,6 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Storage } from '@ionic/storage';
 
 /**
  * Api is a generic REST Api handler. Set your API url first.
@@ -10,21 +9,9 @@ export class Api {
   url: string = 'https://erp-api.azurewebsites.net/api';
   headers: Headers;
 
-  constructor(public http: HttpClient, private storage: Storage) {
-    let token = '';
-    
-    storage.get("token").then((val) => {
-      token = val;
-    });
-
-    this.headers = new Headers();
-    this.headers.append('Content-Type', 'application/json');
-    this.headers.append('Accept', 'application/json');
-
-    if (token != '') {
-      this.headers.append('Authorization', 'Bearer ' + token);
-    }
+  constructor(public http: HttpClient) {
   }
+
 
   get(endpoint: string, params?: any, reqOpts?: any) {
     if (!reqOpts) {

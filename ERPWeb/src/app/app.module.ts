@@ -1,4 +1,4 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { Camera } from '@ionic-native/camera';
@@ -9,11 +9,12 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
-import { Items } from '../mocks/providers/items';
-import { Settings, User, Api } from '../providers';
+// import { Items } from '../mocks/providers/items-mock';
+import { Settings, User, Api,Items } from '../providers';
 import { MyApp } from './app.component';
 import { CustomerInfoPage } from '../pages/customer-info/customer-info';
 import { CustomerTransactionPage } from '../pages/customer-transaction/customer-transaction';
+import { AuthProvider } from '../providers/auth/auth';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -70,7 +71,13 @@ export function provideSettings(storage: Storage) {
     StatusBar,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthProvider,
+      multi: true
+    }
+    
   ]
 })
 export class AppModule { }

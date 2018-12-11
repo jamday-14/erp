@@ -1,7 +1,6 @@
 import 'rxjs/add/operator/toPromise';
 
 import { Injectable } from '@angular/core';
-import { Storage } from '@ionic/storage';
 
 import { Api } from '../api/api';
 
@@ -28,7 +27,7 @@ import { Api } from '../api/api';
 export class User {
   _user: any;
 
-  constructor(public api: Api, private storage: Storage) { }
+  constructor(public api: Api) { }
 
   /**
    * Send a POST request to our login endpoint with the data
@@ -78,8 +77,6 @@ export class User {
    */
   logout() {
     this._user = null;
-    this.storage.remove('currentUser');
-    this.storage.remove('token');
   }
 
   /**
@@ -87,7 +84,7 @@ export class User {
    */
   _loggedIn(data) {
     this._user = data.response.user;
-    this.storage.set('currentUser', JSON.stringify(this._user));
-    this.storage.set('token', data.token);
+    localStorage.setItem('currentUser', JSON.stringify(this._user));
+    localStorage.setItem('token', data.token);
   }
 }

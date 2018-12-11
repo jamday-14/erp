@@ -7,9 +7,14 @@ import { Api } from '../api/api';
 export class Items {
 
   constructor(public api: Api) { }
+  items: any[];
 
-  query(params?: any) {
-    return this.api.get('/items', params);
+  public query(params?: any) {
+    let seq = this.api.get('maintenance/items', params);
+    seq.subscribe((resp) => {
+    });
+
+    return seq;
   }
 
   add(item: Item) {

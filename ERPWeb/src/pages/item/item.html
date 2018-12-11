@@ -20,18 +20,24 @@
       <ion-icon name="md-add"></ion-icon>
     </button>
   </ion-fab>
-
+  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
   <ion-list>
     <button detail-none (click)="expandItem(item)" ion-item *ngFor="let item of items">
-      <ion-thumbnail item-start>
+      <!-- <ion-thumbnail item-start>
         <img src="http://placehold.it/100">
-      </ion-thumbnail>
-      <h2>My Neighbor Totoro</h2>
-      <p>Hayao Miyazaki • 1988</p>
+      </ion-thumbnail> -->
+      <h2>Item Code : {{item.itemCode}}</h2>
+      <p>Unit Price: {{item.unitPrice}}</p>
       <expandable [expandHeight]="itemExpandHeight" [expanded]="item.expanded">
-        Hello people
+        {{item.description}}
       </expandable>
       <button ion-button clear item-end>View</button>
     </button>
   </ion-list>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)" threshold="100px">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Loading more data...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>

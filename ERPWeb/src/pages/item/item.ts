@@ -1,5 +1,8 @@
-import { Component, NgModule } from '@angular/core';
-import { IonicPage, NavController, NavParams, IonicPageModule } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams, InfiniteScroll, LoadingController } from 'ionic-angular';
+
+import { Items } from '../../providers';
+
 
 /**
  * Generated class for the ItemPage page.
@@ -16,27 +19,69 @@ import { IonicPage, NavController, NavParams, IonicPageModule } from 'ionic-angu
 
 export class ItemPage {
 
+  currentIndex = 0;
+  listSize = 50;
+  records: any;
   items: any = [];
-  itemExpandHeight: number = 100;
+  itemExpandHeight: number = 40;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.items = [
-      { expanded: false },
-      { expanded: false },
-      { expanded: false },
-      { expanded: false },
-      { expanded: false },
-      { expanded: false },
-      { expanded: false },
-      { expanded: false },
-      { expanded: false }
-    ];
+  defaultItem: any = {
+    "name": "Burt Bear",
+    "profilePic": "assets/img/speakers/bear.jpg",
+    "about": "Burt is a Bear.",
+  };
+
+  loader = this.loadingCtrl.create({
+    content: "Loading. Please wait..."
+  });
+
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public itemProvider: Items,
+    public loadingCtrl: LoadingController) {
+
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ItemPage');
+
+    this.loader.present();
+    this.itemProvider.query().subscribe((resp) => {
+      this.records = resp;
+      this.items = this.records.slice(this.currentIndex, this.listSize);
+      this.items.forEach(x => x.expandable = false);
+      this.loader.dismiss();
+    }, (err) => {
+      this.loader.dismiss();
+    })
   }
 
+  getItems(ev) {
+
+    this.items = this.records.slice(this.currentIndex, this.listSize);
+    // set val to the value of the ev target
+    var val = ev.target.value;
+
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() != '' && val.length > 2) {
+      this.items = this.records
+        .filter((item) => {
+          return (item.description.toLowerCase().indexOf(val.toLowerCase()) > -1 || item.itemCode.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        })
+        .slice(this.currentIndex, this.listSize);
+    }
+  }
+
+  doInfinite(infiniteScroll: InfiniteScroll) {
+
+    this.currentIndex++;
+    this.items = this.records.slice(0, (this.listSize * this.currentIndex));
+    infiniteScroll.complete();
+
+    if (this.items.length > 90) {
+      infiniteScroll.enable(false);
+    }
+
+  }
   expandItem(item) {
 
     this.items.map((listItem) => {
@@ -51,6 +96,7 @@ export class ItemPage {
 
     });
   }
+  
   new() {
     this.navCtrl.push("ItemCreatePage");
   }
