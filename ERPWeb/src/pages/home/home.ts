@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Menu } from '../../providers';
 
 
 /**
@@ -16,18 +17,14 @@ import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angul
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public menu: MenuController) {
-    this.activateMenu();
+  constructor(public navCtrl: NavController, public navParams: NavParams, public menu: Menu) {
+    this.menu.activateMenu(false, false, false, false, false, false);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
   }
 
-  activateMenu(): any {
-    this.menu.enable(false, 'salesMenu');
-    this.menu.enable(false, 'purchasingMenu');
-  }
 
   goto(page: string){
     this.navCtrl.setRoot(page);

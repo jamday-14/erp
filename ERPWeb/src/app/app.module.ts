@@ -18,8 +18,6 @@ import { AuthProvider } from '../providers/auth/auth';
 import { Maintenance } from '../providers/maintenance/maintenance';
 import { Menu } from '../providers/menu/menu';
 import { ComponentsModule } from '../components/components.module';
-import { LoginPage } from '../pages/login/login';
-
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
