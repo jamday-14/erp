@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
-import { Maintenance, Menu } from '../../providers';
-import { ListSize } from '..';
+import { Maintenance, Menu } from '../../../providers';
+import { ListSize } from '../..';
 
 /**
  * Generated class for the EmployeePage page.

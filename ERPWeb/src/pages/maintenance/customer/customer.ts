@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { CustomerInfoPage } from '../customer-info/customer-info';
-import { CustomerTransactionPage } from '../customer-transaction/customer-transaction';
+import { CustomerInfoPage } from '../../customer-info/customer-info';
+import { CustomerTransactionPage } from '../../customer-transaction/customer-transaction';
+
 
 /**
  * Generated class for the CustomerPage page.

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, InfiniteScroll, LoadingController } from 'ionic-angular';
 
-import { Maintenance, Menu } from '../../providers';
-import { ListSize } from '..';
+import { Maintenance, Menu } from '../../../providers';
+import { ListSize } from '../..';
 
 
 /**

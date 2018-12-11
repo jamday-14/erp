@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the CashReceiptPage page.
+ * Generated class for the VendorCreatePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,16 +10,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-cash-receipt',
-  templateUrl: 'cash-receipt.html',
+  selector: 'page-vendor-create',
+  templateUrl: 'vendor-create.html',
 })
-export class CashReceiptPage {
+export class VendorCreatePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CashReceiptPage');
+    console.log('ionViewDidLoad VendorCreatePage');
   }
 
 }

@@ -167,7 +167,8 @@ export class MyApp {
     { title: 'Dashboard', component: 'MaintenancePage' },
     { title: 'Customer', component: 'CustomerPage' },
     { title: 'Item', component: 'ItemPage' },
-    { title: 'Employee', component: 'EmployeePage' }
+    { title: 'Employee', component: 'EmployeePage' },
+    { title: 'Vendor', component: 'VendorPage' }
   ]
   constructor(private translate: TranslateService,
     platform: Platform, settings: Settings,
