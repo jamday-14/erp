@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { Maintenance, Menu } from '../../providers';
+import { ListSize } from '..';
 
 /**
  * Generated class for the EmployeePage page.
@@ -17,7 +18,7 @@ import { Maintenance, Menu } from '../../providers';
 export class EmployeePage {
 
   currentIndex = 0;
-  listSize = 50;
+  listSize = ListSize;
   records: any;
   items: any = [];
   itemExpandHeight: number = 40;
@@ -60,9 +61,28 @@ export class EmployeePage {
     if (val && val.trim() != '' && val.length > 2) {
       this.items = this.records
         .filter((item) => {
-          return (item.description.toLowerCase().indexOf(val.toLowerCase()) > -1 || item.itemCode.toLowerCase().indexOf(val.toLowerCase()) > -1);
+          return (item.lastName.toLowerCase().indexOf(val.toLowerCase()) > -1 || item.firstName.toLowerCase().indexOf(val.toLowerCase()) > -1);
         })
         .slice(this.currentIndex, this.listSize);
     }
+  }
+
+  expandItem(item) {
+
+    this.items.map((listItem) => {
+
+      if (item == listItem) {
+        listItem.expanded = !listItem.expanded;
+      } else {
+        listItem.expanded = false;
+      }
+
+      return listItem;
+
+    });
+  }
+
+  new() {
+    this.navCtrl.push("EmployeeCreatePage");
   }
 }

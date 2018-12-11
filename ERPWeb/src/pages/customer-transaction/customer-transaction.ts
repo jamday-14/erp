@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 /**
  * Generated class for the CustomerTransactionPage page.
@@ -18,7 +17,7 @@ export class CustomerTransactionPage {
 
   
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
    
   }
 

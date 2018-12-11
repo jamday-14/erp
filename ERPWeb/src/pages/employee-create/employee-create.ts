@@ -4,12 +4,20 @@ import { Camera } from '@ionic-native/camera';
 import { IonicPage, NavController, ViewController, LoadingController, ToastController } from 'ionic-angular';
 import { Maintenance, Menu } from '../../providers';
 
+/**
+ * Generated class for the EmployeeCreatePage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
 @IonicPage()
 @Component({
-  selector: 'page-item-create',
-  templateUrl: 'item-create.html'
+  selector: 'page-employee-create',
+  templateUrl: 'employee-create.html',
 })
-export class ItemCreatePage {
+export class EmployeeCreatePage {
+
   @ViewChild('fileInput') fileInput;
 
   isReadyToSave: boolean;
@@ -29,21 +37,25 @@ export class ItemCreatePage {
     public camera: Camera,
     private maintenanceProvider: Maintenance,
     public loadingCtrl: LoadingController,
-    public toastCtrl: ToastController, 
-    public menu: Menu) {
-
+    public toastCtrl: ToastController,
+    public menu: Menu
+  ) {
     this.form = formBuilder.group({
       profilePic: [''],
-      itemCode: ['', Validators.required],
-      description: ['', Validators.required],
-      unitPrice: ['', Validators.required],
-      costPrice: ['', Validators.required],
-      quantity: ['', Validators.required],
-      unitId: [null, Validators.required],
-      isPurchased: [false],
-      isForSale: [false],
-      isInventory: [false],
-      isImported: [false]
+      firstName: ['', Validators.required],
+      middleName: [''],
+      lastName: ['', Validators.required],
+      telNo: [''],
+      address: ['', Validators.required],
+      bday: [null],
+      philHealthNo: [''],
+      sssno: [''],
+      tinno: [''],
+      pagibigNo: [''],
+      isRegular: [false],
+      isContract: [false],
+      isExtendContract: [false],
+      isSalesPerson: [false]
     });
 
     // Watch the form for changes, and
@@ -57,7 +69,6 @@ export class ItemCreatePage {
 
     this.getData();
   }
-
   private getData() {
     this.maintenanceProvider.queryUnits().subscribe((resp) => {
       this.units = resp;
@@ -107,17 +118,21 @@ export class ItemCreatePage {
     if (!this.form.valid) { return; }
 
 
-    this.maintenanceProvider.addItem({
-      itemCode: this.f.itemCode.value,
-      description: this.f.description.value,
-      unitPrice: this.f.unitPrice.value,
-      costPrice: this.f.costPrice.value,
-      quantity: this.f.quantity.value,
-      unitId: this.f.unitId.value,
-      ipurchased: this.f.isPurchased.value,
-      isForSale: this.f.isForSale.value,
-      isImported: this.f.isImported.value,
-      isInventory: this.f.isInventory.value
+    this.maintenanceProvider.addEmployee({
+      firstName: this.f.firstName.value,
+      middleName: this.f.middleName.value,
+      lastName: this.f.lastName.value,
+      telNo: this.f.telNo.value,
+      address: this.f.address.value,
+      bday: this.f.bday.value,
+      philHealthNo: this.f.philHealthNo.value,
+      sssno: this.f.sssno.value,
+      tinno: this.f.tinno.value,
+      pagibigNo: this.f.pagibigNo.value,
+      isRegular: this.f.isRegular.value,
+      isContract: this.f.isContract.value,
+      isExtendContract: this.f.isExtendContract.value,
+      isSalesPerson: this.f.isSalesPerson.value
     }).subscribe((resp) => {
       let toast = this.toastCtrl.create({
         message: "Saving successful",

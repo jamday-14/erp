@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, InfiniteScroll, LoadingController } from 'ionic-angular';
 
 import { Maintenance, Menu } from '../../providers';
+import { ListSize } from '..';
 
 
 /**
@@ -20,7 +21,7 @@ import { Maintenance, Menu } from '../../providers';
 export class ItemPage {
 
   currentIndex = 0;
-  listSize = 50;
+  listSize = ListSize;
   records: any;
   items: any = [];
   itemExpandHeight: number = 40;

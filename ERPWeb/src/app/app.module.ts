@@ -18,6 +18,7 @@ import { AuthProvider } from '../providers/auth/auth';
 import { Maintenance } from '../providers/maintenance/maintenance';
 import { Menu } from '../providers/menu/menu';
 import { ComponentsModule } from '../components/components.module';
+import { LoginPage } from '../pages/login/login';
 
 
 // The translate loader needs to know where to load i18n files
@@ -59,11 +60,13 @@ export function provideSettings(storage: Storage) {
     }),
     IonicModule.forRoot(MyApp, { tabsPlacement: 'top' }),
     IonicStorageModule.forRoot(),
-    ComponentsModule
+    ComponentsModule,
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    
     CustomerInfoPage,
     CustomerTransactionPage
   ],
