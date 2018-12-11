@@ -1,7 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Camera } from '@ionic-native/camera';
-import { IonicPage, NavController, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, ViewController, LoadingController, ToastController } from 'ionic-angular';
+import { Maintenance } from '../../providers';
 
 @IonicPage()
 @Component({
@@ -14,10 +15,21 @@ export class ItemCreatePage {
   isReadyToSave: boolean;
 
   item: any;
-
+  units: any;
   form: FormGroup;
 
-  constructor(public navCtrl: NavController, public viewCtrl: ViewController, formBuilder: FormBuilder, public camera: Camera) {
+  loader = this.loadingCtrl.create({
+    content: "Saving. Please wait..."
+  });
+
+  constructor(public navCtrl: NavController,
+    public viewCtrl: ViewController,
+    formBuilder: FormBuilder,
+    public camera: Camera,
+    private maintenanceProvider: Maintenance,
+    public loadingCtrl: LoadingController,
+    public toastCtrl: ToastController, ) {
+
     this.form = formBuilder.group({
       profilePic: [''],
       itemCode: ['', Validators.required],
@@ -26,10 +38,10 @@ export class ItemCreatePage {
       costPrice: ['', Validators.required],
       quantity: ['', Validators.required],
       unitId: [null, Validators.required],
-      ispurchased: [null],
-      isForSale: [null],
-      isInventory: [null],
-      isImported: [null]
+      isPurchased: [false],
+      isForSale: [false],
+      isInventory: [false],
+      isImported: [false]
     });
 
     // Watch the form for changes, and
@@ -39,7 +51,11 @@ export class ItemCreatePage {
   }
 
   ionViewDidLoad() {
+    this.maintenanceProvider.queryUnits().subscribe((resp) => {
+      this.units = resp;
+    }, (err) => {
 
+    });
   }
 
   getPicture() {
@@ -80,12 +96,45 @@ export class ItemCreatePage {
     this.viewCtrl.dismiss();
   }
 
+  // convenience getter for easy access to form fields
+  get f() { return this.form.controls; }
+
   /**
    * The user is done and wants to create the item, so return it
    * back to the presenter.
    */
   done() {
     if (!this.form.valid) { return; }
-    this.viewCtrl.dismiss(this.form.value);
+
+
+    this.maintenanceProvider.addItem({
+      itemCode: this.f.itemCode.value,
+      description: this.f.description.value,
+      unitPrice: this.f.unitPrice.value,
+      costPrice: this.f.costPrice.value,
+      quantity: this.f.quantity.value,
+      unitId: this.f.unitId.value,
+      ipurchased: this.f.isPurchased.value,
+      isForSale: this.f.isForSale.value,
+      isImported: this.f.isImported.value,
+      isInventory: this.f.isInventory.value
+    }).subscribe((resp) => {
+      let toast = this.toastCtrl.create({
+        message: "Saving successful",
+        duration: 3000,
+        position: 'top'
+      });
+      toast.present();
+      this.loader.dismiss();
+      this.viewCtrl.dismiss(this.form.value);
+    }, (err) => {
+      let toast = this.toastCtrl.create({
+        message: "Saving failed",
+        duration: 3000,
+        position: 'top'
+      });
+      toast.present();
+      this.loader.dismiss();
+    });
   }
 }

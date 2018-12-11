@@ -51,13 +51,8 @@
       </ion-item>
       <ion-item>
         <ion-label>Unit</ion-label>
-        <ion-select okText="OK" cancelText="CANCEL"  formControlName='unitId'>
-          <ion-option value="nes">NES</ion-option>
-          <ion-option value="n64">Nintendo64</ion-option>
-          <ion-option value="ps">PlayStation</ion-option>
-          <ion-option value="genesis">Sega Genesis</ion-option>
-          <ion-option value="saturn">Sega Saturn</ion-option>
-          <ion-option value="snes">SNES</ion-option>
+        <ion-select okText="OK" cancelText="CANCEL" formControlName='unitId'>
+          <ion-option *ngFor="let unit of units" [value]="unit.id">{{unit.name}}</ion-option>
         </ion-select>
       </ion-item>
       <ion-item>
@@ -66,7 +61,7 @@
       </ion-item>
       <ion-item>
         <ion-label>Is Purchased</ion-label>
-        <ion-checkbox formControlName='ispurchased'></ion-checkbox>
+        <ion-checkbox formControlName='isPurchased'></ion-checkbox>
       </ion-item>
       <ion-item>
         <ion-label>Is For Sale</ion-label>

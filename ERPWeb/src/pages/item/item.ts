@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, InfiniteScroll, LoadingController } from 'ionic-angular';
 
-import { Items } from '../../providers';
+import { Maintenance } from '../../providers';
 
 
 /**
@@ -37,7 +37,7 @@ export class ItemPage {
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    public itemProvider: Items,
+    public maintenanceProvider: Maintenance,
     public loadingCtrl: LoadingController) {
 
   }
@@ -45,7 +45,7 @@ export class ItemPage {
   ionViewDidLoad() {
 
     this.loader.present();
-    this.itemProvider.query().subscribe((resp) => {
+    this.maintenanceProvider.queryItems().subscribe((resp) => {
       this.records = resp;
       this.items = this.records.slice(this.currentIndex, this.listSize);
       this.items.forEach(x => x.expandable = false);

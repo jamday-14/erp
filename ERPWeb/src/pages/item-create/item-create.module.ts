@@ -6,7 +6,7 @@ import { ItemCreatePage } from './item-create';
 
 @NgModule({
   declarations: [
-    ItemCreatePage,
+    ItemCreatePage
   ],
   imports: [
     IonicPageModule.forChild(ItemCreatePage),

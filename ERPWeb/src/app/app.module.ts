@@ -10,11 +10,12 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 // import { Items } from '../mocks/providers/items-mock';
-import { Settings, User, Api,Items } from '../providers';
+import { Settings, User, Api } from '../providers';
 import { MyApp } from './app.component';
 import { CustomerInfoPage } from '../pages/customer-info/customer-info';
 import { CustomerTransactionPage } from '../pages/customer-transaction/customer-transaction';
 import { AuthProvider } from '../providers/auth/auth';
+import { Maintenance } from '../providers/maintenance/maintenance';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -64,7 +65,6 @@ export function provideSettings(storage: Storage) {
   ],
   providers: [
     Api,
-    Items,
     User,
     Camera,
     SplashScreen,
@@ -76,7 +76,8 @@ export function provideSettings(storage: Storage) {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthProvider,
       multi: true
-    }
+    },
+    Maintenance
     
   ]
 })
