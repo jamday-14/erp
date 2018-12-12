@@ -52,11 +52,11 @@
         <ion-input type="text" formControlName='contactPerson'></ion-input>
       </ion-item>
       <ion-item>
-          <ion-label>Currencies</ion-label>
-          <ion-select okText="OK" cancelText="CANCEL" formControlName='currencyId'>
-            <ion-option *ngFor="let currency of currencies" [value]="currency.id">{{currency.name}}</ion-option>
-          </ion-select>
-        </ion-item>
+        <ion-label>Currencies</ion-label>
+        <ion-select okText="OK" cancelText="CANCEL" formControlName='currencyId'>
+          <ion-option *ngFor="let currency of currencies" [value]="currency.id">{{currency.name}}</ion-option>
+        </ion-select>
+      </ion-item>
     </ion-list>
   </form>
 </ion-content>

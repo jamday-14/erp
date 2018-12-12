@@ -26,6 +26,10 @@ export class Maintenance {
     return this.api.get('maintenance/vendors', params);
   }
 
+  queryCustomers(params?: any) {
+    return this.api.get('maintenance/customers', params);
+  }
+
   queryUnits(params?: any) {
     return this.api.get('maintenance/units', params);
   }
@@ -68,5 +72,9 @@ export class Maintenance {
 
   addVendor(vendor: any) {
     return this.api.post('maintenance/vendors', vendor);
+  }
+
+  addCustomer(customer: any) {
+    return this.api.post('maintenance/customers', customer);
   }
 }

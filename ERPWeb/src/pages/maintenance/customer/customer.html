@@ -10,17 +10,33 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Customer</ion-title>
+    <ion-title>Customers</ion-title>
   </ion-navbar>
-  <ion-toolbar>
-    <ion-searchbar></ion-searchbar>
-  </ion-toolbar>
 </ion-header>
 
 
 <ion-content padding>
-  <ion-tabs>
+  <!-- <ion-tabs>
     <ion-tab [root]="customerInfoTab" tabTitle="Information"></ion-tab>
     <ion-tab [root]="customerTransactionTab" tabTitle="Transaction History"></ion-tab>
-  </ion-tabs>
+  </ion-tabs> -->
+
+  <ion-fab top right edge #fab1>
+    <button ion-fab mini (click)="new()">
+      <ion-icon name="md-add"></ion-icon>
+    </button>
+  </ion-fab>
+  <ion-searchbar placeholder="Search by name or customer code" (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-list>
+    <button detail-none (click)="expandItem(item)" ion-item *ngFor="let item of items">
+      <h2>Name : {{item.name}}</h2>
+      <p>Customer Code: {{item.code}}</p>
+      <expandable [expandHeight]="itemExpandHeight" [expanded]="item.expanded">
+        <div>Contact Person: {{item.contactPerson}}</div>
+        <div>Address: {{item.address}}</div>
+        <div>Telephone No: {{item.telNo}}</div>
+      </expandable>
+      <button ion-button clear item-end>View</button>
+    </button>
+  </ion-list>
 </ion-content>

@@ -1,0 +1,94 @@
+<!--
+  Generated template for the CustomerCreatePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>New Customer</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-fab top right edge #fab1>
+    <button ion-fab mini (click)="done()" [disabled]="!isReadyToSave">
+      <ion-icon name="md-checkmark"></ion-icon>
+    </button>
+  </ion-fab>
+  <form *ngIf="form" [formGroup]="form" (ngSubmit)="createItem()">
+    <input type="file" #fileInput style="visibility: hidden; height: 0px" name="files[]" (change)="processWebImage($event)" />
+    <div class="profile-image-wrapper" (click)="getPicture()">
+      <div class="profile-image-placeholder" *ngIf="!this.form.controls.profilePic.value">
+        <ion-icon name="add"></ion-icon>
+        <div>
+          Add Image
+        </div>
+      </div>
+      <div class="profile-image" [style.backgroundImage]="getProfileImageStyle()" *ngIf="this.form.controls.profilePic.value"></div>
+    </div>
+    <ion-list>
+      <ion-item>
+        <ion-label>Name</ion-label>
+        <ion-input type="text" formControlName='name'></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Code</ion-label>
+        <ion-input type="text" formControlName='code'></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Address</ion-label>
+        <ion-textarea formControlName='address'></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label>Telephone No</ion-label>
+        <ion-input type="tel" formControlName='telNo'></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Fax No</ion-label>
+        <ion-input type="tel" formControlName='faxNo'></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Contact Person</ion-label>
+        <ion-input type="text" formControlName='contactPerson'></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>TIN No</ion-label>
+        <ion-input type="text" formControlName='tinno'></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Customer Type</ion-label>
+        <ion-select okText="OK" cancelText="CANCEL" formControlName='customerTypeId'>
+          <ion-option *ngFor="let customerType of customerTypes" [value]="customerType.id">{{customerType.name}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Registered Name</ion-label>
+        <ion-input type="text" formControlName='registeredName'></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Registered Owner</ion-label>
+        <ion-input type="text" formControlName='registeredOwner'></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Business Style</ion-label>
+        <ion-input type="text" formControlName='businessStyle'></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Terms</ion-label>
+        <ion-select okText="OK" cancelText="CANCEL" formControlName='termId'>
+          <ion-option *ngFor="let term of terms" [value]="term.id">{{term.name}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Sales Person</ion-label>
+        <ion-select okText="OK" cancelText="CANCEL" formControlName='salesPersonId'>
+          <ion-option *ngFor="let salesPerson of salesPersons" [value]="salesPerson.id">{{salesPerson.firstName}} {{salesPerson.lastName}}</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+  </form>
+</ion-content>
