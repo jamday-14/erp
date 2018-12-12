@@ -9,7 +9,7 @@ import { Api } from '..';
 */
 @Injectable()
 export class Maintenance {
-
+  
   constructor(public api: Api) {
 
   }
@@ -22,8 +22,16 @@ export class Maintenance {
     return this.api.get('maintenance/employees', params);
   }
 
+  queryVendors(params?: any) {
+    return this.api.get('maintenance/vendors', params);
+  }
+
   queryUnits(params?: any) {
     return this.api.get('maintenance/units', params);
+  }
+
+  queryCurrencies(params?: any) {
+    return this.api.get('maintenance/currencies', params);
   }
 
   queryCustomerTypes(params?: any) {
@@ -56,5 +64,9 @@ export class Maintenance {
 
   addEmployee(employee: any) {
     return this.api.post('maintenance/employees', employee);
+  }
+
+  addVendor(vendor: any) {
+    return this.api.post('maintenance/vendors', vendor);
   }
 }

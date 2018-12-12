@@ -13,6 +13,50 @@
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+  <ion-fab top right edge #fab1>
+    <button ion-fab mini (click)="done()" [disabled]="!isReadyToSave">
+      <ion-icon name="md-checkmark"></ion-icon>
+    </button>
+  </ion-fab>
+  <form *ngIf="form" [formGroup]="form" (ngSubmit)="createItem()">
+    <input type="file" #fileInput style="visibility: hidden; height: 0px" name="files[]" (change)="processWebImage($event)" />
+    <div class="profile-image-wrapper" (click)="getPicture()">
+      <div class="profile-image-placeholder" *ngIf="!this.form.controls.profilePic.value">
+        <ion-icon name="add"></ion-icon>
+        <div>
+          Add Image
+        </div>
+      </div>
+      <div class="profile-image" [style.backgroundImage]="getProfileImageStyle()" *ngIf="this.form.controls.profilePic.value"></div>
+    </div>
+    <ion-list>
+      <ion-item>
+        <ion-label>Name</ion-label>
+        <ion-input type="text" formControlName='vendorName'></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Address</ion-label>
+        <ion-textarea formControlName='address'></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label>Telephone No</ion-label>
+        <ion-input type="tel" formControlName='telNo'></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Fax No</ion-label>
+        <ion-input type="tel" formControlName='faxNo'></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Contact Person</ion-label>
+        <ion-input type="text" formControlName='contactPerson'></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label>Currencies</ion-label>
+          <ion-select okText="OK" cancelText="CANCEL" formControlName='currencyId'>
+            <ion-option *ngFor="let currency of currencies" [value]="currency.id">{{currency.name}}</ion-option>
+          </ion-select>
+        </ion-item>
+    </ion-list>
+  </form>
 </ion-content>
