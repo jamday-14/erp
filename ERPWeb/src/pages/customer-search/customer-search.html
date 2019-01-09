@@ -14,10 +14,10 @@
 
 
 <ion-content>
-  <ion-searchbar (ionInput)="getCustomers($event)"></ion-searchbar>
+  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
   <ion-list>
-    <ion-item *ngFor="let customer of customers" (click)="popPage(customer)">
-      {{ customer }}
+    <ion-item *ngFor="let customer of items" (click)="popPage(customer)">
+      {{ customer.name }}
     </ion-item>
   </ion-list>
 </ion-content>

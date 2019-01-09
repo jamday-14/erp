@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events, LoadingController } from 'ionic-angular';
+import { Maintenance } from '../../providers';
+import { ListSize } from '..';
 
 /**
  * Generated class for the ItemSearchPage page.
@@ -15,37 +17,53 @@ import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 })
 export class ItemSearchPage {
 
-  items: any;
+  currentIndex = 0;
+  listSize = ListSize;
+  records: any;
+  items: any = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private events: Events) {
-    this.initialize();
+  loader = this.loadingCtrl.create({
+    content: "Loading. Please wait..."
+  });
+
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private events: Events,
+    public maintenanceProvider: Maintenance,
+    public loadingCtrl: LoadingController) {
+    
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ItemSearchPage');
+    this.getData();
   }
 
-  initialize(): any {
-    this.items = [
-      { code: "Item 1", description: "Electric Fan", qtyOnHand: 2, qtyDR: 2, qtyInvoice: 2 },
-      { code: "Item 2", description: "Television", qtyOnHand: 2, qtyDR: 2, qtyInvoice: 2 },
-      { code: "Item 3", description: "Washing Machine", qtyOnHand: 2, qtyDR: 2, qtyInvoice: 2 },
-      { code: "Item 4", description: "Refrigerator", qtyOnHand: 2, qtyDR: 2, qtyInvoice: 2 },
-    ];
+  private getData() {
+    this.loader.present();
+    this.maintenanceProvider.queryItems().subscribe((resp) => {
+      this.records = resp;
+      this.items = this.records.slice(this.currentIndex, this.listSize);
+      this.items.forEach(x => x.expandable = false);
+      this.loader.dismiss();
+    }, (err) => {
+      this.loader.dismiss();
+    });
   }
 
   getItems(ev) {
-    // Reset items back to all of the items
-    this.initialize();
 
+    this.items = this.records.slice(this.currentIndex, this.listSize);
     // set val to the value of the ev target
     var val = ev.target.value;
 
     // if the value is an empty string don't filter the items
-    if (val && val.trim() != '') {
-      this.items = this.items.filter((item) => {
-        return (item.description.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
+    if (val && val.trim() != '' && val.length > 2) {
+      this.items = this.records
+        .filter((item) => {
+          return (item.description.toLowerCase().indexOf(val.toLowerCase()) > -1 || item.itemCode.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        })
+        .slice(this.currentIndex, this.listSize);
     }
   }
 

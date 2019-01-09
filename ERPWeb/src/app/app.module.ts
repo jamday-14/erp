@@ -18,6 +18,7 @@ import { AuthProvider } from '../providers/auth/auth';
 import { Maintenance } from '../providers/maintenance/maintenance';
 import { Menu } from '../providers/menu/menu';
 import { ComponentsModule } from '../components/components.module';
+import { Sales } from '../providers/sales/sales';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -83,7 +84,8 @@ export function provideSettings(storage: Storage) {
       multi: true
     },
     Maintenance,
-    Menu
+    Menu,
+    Sales
     
   ]
 })

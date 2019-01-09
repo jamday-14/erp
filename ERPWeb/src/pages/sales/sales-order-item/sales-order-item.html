@@ -8,83 +8,50 @@
 
   <ion-navbar>
     <ion-title>Sales Order Item</ion-title>
-    <ion-buttons end> <button ion-button clear (click)="save()"> Save </button> </ion-buttons>
+    <ion-buttons end> <button ion-button clear (click)="save()"> Add </button> </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content>
-  <ion-grid no-padding>
-    <ion-row>
-      <ion-col>
-        <button ion-item (click)="goto('ItemSearchPage')">
-          <ion-label>Item</ion-label>
-          <ion-note item-end>{{item.code}} - {{item.description}}</ion-note>
-        </button>
-      </ion-col>
-    </ion-row>
+  <ion-list>
+    <button ion-item (click)="goto('ItemSearchPage')">
+      <ion-label>Item</ion-label>
+      <div item-content>
+        <h1> {{item.description}}</h1>
+        <h2>{{item.itemCode}}</h2>
+      </div>
+      <!-- <ion-note item-end>{{item.code}} - {{item.description}}</ion-note> -->
+    </button>
+    <ion-item>
+      <ion-label>Qty</ion-label>
+      <ion-input type="number" [(ngModel)]="item.qty" name="qty"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Discount</ion-label>
+      <ion-input type="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Remarks</ion-label>
+      <ion-textarea></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>Qty Onhand</ion-label>
+      <ion-note item-end>{{item.qtyOnHand}}</ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Unit</ion-label>
+      <ion-input type="text" [(ngModel)]="item.unit" name="unit"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Unit Price</ion-label>
+      <ion-note item-end>{{item.unitPrice}}</ion-note>
+    </ion-item>
 
-    <ion-row>
-      <ion-col col-12 col-sm-6 col-md-6 col-xl-3 col-lg-3>
-        <ion-item>
-          <ion-label>Qty</ion-label>
-          <ion-input type="number" [(ngModel)]="item.qty" name="qty"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col col-12 col-sm-6 col-md-6 col-xl-3 col-lg-3>
-        <ion-item>
-          <ion-label>Qty DR</ion-label>
-          <ion-note item-end>{{item.qtyDR}}</ion-note>
-        </ion-item>
+    <ion-item>
+      <ion-label>Subtotal</ion-label>
+      <ion-note item-end>{{subTotal}}</ion-note>
+    </ion-item>
 
-      </ion-col>
-      <ion-col col-12 col-sm-6 col-md-6 col-xl-3 col-lg-3>
-        <ion-item>
-          <ion-label>Qty Invoice</ion-label>
-          <ion-note item-end>{{item.qtyInvoice}}</ion-note>
-        </ion-item>
-      </ion-col>
-      <ion-col col-12 col-sm-6 col-md-6 col-xl-3 col-lg-3>
-        <ion-item>
-          <ion-label>Qty Onhand</ion-label>
-          <ion-note item-end>{{item.qtyOnHand}}</ion-note>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-12 col-sm-6 col-md-6 col-xl-3 col-lg-3>
-        <ion-item>
-          <ion-label fixed>Unit</ion-label>
-          <ion-input type="text" [(ngModel)]="item.unit" name="unit"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col col-12 col-sm-6 col-md-6 col-xl-3 col-lg-3>
-        <ion-item>
-          <ion-label>Unit Price</ion-label>
-          <ion-input type="number" [(ngModel)]="item.unitPrice" name="unitPrice"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col col-12 col-sm-6 col-md-6 col-xl-3 col-lg-3>
-        <ion-item>
-          <ion-label>Discount</ion-label>
-          <ion-input type="number"></ion-input>
-        </ion-item>
-
-      </ion-col>
-      <ion-col col-12 col-sm-6 col-md-6 col-xl-3 col-lg-3>
-        <ion-item>
-          <ion-label>Subtotal</ion-label>
-          <ion-note item-end>{{subTotal}}</ion-note>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-item>
-          <ion-label>Remarks</ion-label>
-          <ion-textarea></ion-textarea>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  </ion-list>
 </ion-content>

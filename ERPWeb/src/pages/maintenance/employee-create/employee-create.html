@@ -30,63 +30,79 @@
       </div>
       <div class="profile-image" [style.backgroundImage]="getProfileImageStyle()" *ngIf="this.form.controls.profilePic.value"></div>
     </div>
-    <ion-list>
-      <ion-item>
-        <ion-label>Last Name</ion-label>
-        <ion-input type="text" formControlName='lastName'></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label>First Name</ion-label>
-        <ion-input type="text" formControlName='firstName'></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label>Middle Name</ion-label>
-        <ion-input type="text" formControlName='middleName'></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label>Contact No</ion-label>
-        <ion-input type="tel" formControlName='telNo'></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label>Address</ion-label>
-        <ion-textarea formControlName='address'></ion-textarea>
-      </ion-item>
-      <ion-item>
-        <ion-label>Birthdate</ion-label>
-        <ion-datetime formControlName='bday'></ion-datetime>
-      </ion-item>
-      <ion-item>
-        <ion-label>Philhealth No</ion-label>
-        <ion-input type="text" formControlName='philHealthNo'></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label>SSS No</ion-label>
-        <ion-input type="text" formControlName='sssno'></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label>TIN No</ion-label>
-        <ion-input type="text" formControlName='tinno'></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label>Pagibig No</ion-label>
-        <ion-input type="text" formControlName='pagibigNo'></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label>Regular</ion-label>
-        <ion-checkbox formControlName='isRegular'></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <ion-label>Contractual</ion-label>
-        <ion-checkbox formControlName='isContract'></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <ion-label>Contract Extended</ion-label>
-        <ion-checkbox formControlName='isExtendContract'></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <ion-label>Sales Person</ion-label>
-        <ion-checkbox formControlName='isSalesPerson'></ion-checkbox>
-      </ion-item>
-    </ion-list>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12 col-sm-6 col-md-6 col-xl-6 col-lg-6>
+          <ion-list>
+            <ion-list-header>
+              Personal Information
+            </ion-list-header>
+            <ion-item>
+              <ion-label>Last Name</ion-label>
+              <ion-input type="text" formControlName='lastName'></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>First Name</ion-label>
+              <ion-input type="text" formControlName='firstName'></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Middle Name</ion-label>
+              <ion-input type="text" formControlName='middleName'></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Contact No</ion-label>
+              <ion-input type="tel" formControlName='telNo'></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Birthdate</ion-label>
+              <ion-datetime formControlName='bday'></ion-datetime>
+            </ion-item>
+            <ion-item>
+              <ion-label>Address</ion-label>
+              <ion-textarea formControlName='address'></ion-textarea>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+        <ion-col col-12 col-sm-6 col-md-6 col-xl-6 col-lg-6>
+          <ion-list>
+            <ion-list-header>
+              Employment Details
+            </ion-list-header>
+            <ion-item>
+              <ion-label>Philhealth No</ion-label>
+              <ion-input type="text" formControlName='philHealthNo'></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>SSS No</ion-label>
+              <ion-input type="text" formControlName='sssno'></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>TIN No</ion-label>
+              <ion-input type="text" formControlName='tinno'></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Pagibig No</ion-label>
+              <ion-input type="text" formControlName='pagibigNo'></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Regular</ion-label>
+              <ion-checkbox formControlName='isRegular'></ion-checkbox>
+            </ion-item>
+            <ion-item>
+              <ion-label>Contractual</ion-label>
+              <ion-checkbox formControlName='isContract'></ion-checkbox>
+            </ion-item>
+            <ion-item>
+              <ion-label>Contract Extended</ion-label>
+              <ion-checkbox formControlName='isExtendContract'></ion-checkbox>
+            </ion-item>
+            <ion-item>
+              <ion-label>Sales Person</ion-label>
+              <ion-checkbox formControlName='isSalesPerson'></ion-checkbox>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </form>
 </ion-content>

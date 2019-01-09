@@ -5,78 +5,53 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Sales Order</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-<ion-content >
-  <ion-grid no-padding>
-    <ion-row> 
-      <ion-col col-12 col-sm>
-        <ion-item no-padding>
-          <ion-label>Date</ion-label>
-          <ion-datetime displayFormat="MMM DD, YYYY" [(ngModel)]="order.orderDate"></ion-datetime>
-        </ion-item>
-      </ion-col>
-      <ion-col col-12 col-sm>
-        <ion-item no-padding>
-          <ion-label>Reference No.</ion-label>
-          <ion-input type="text"></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-12 col-md-12 col-xl-6 col-lg-4>
-        <button ion-item  no-padding (click)="goto('CustomerSearchPage')">
-          <ion-label>Customer</ion-label>
-          <ion-note item-content>{{order.company}}</ion-note>
-        </button>
-      </ion-col>
-      <ion-col col-12 col-md-6 col-xl-3 col-lg-4>
-        <ion-item no-padding>
-          <ion-label>Telephone No.</ion-label>
-          <ion-input type="tel"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col col-12 col-md-6 col-xl-3 col-lg-4>
-        <ion-item no-padding>
-          <ion-label>Fax No.</ion-label>
-          <ion-input type="tel"></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-item no-padding>
-          <ion-label>Address</ion-label>
-          <ion-textarea></ion-textarea>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-12>
-        <ion-item no-padding>
-            <button ion-button item-start outline color="dark" (click)="goto('SalesOrderItemPage')">
-                <i class="fa fa-unlock" aria-hidden="true">&nbsp;</i>
-                ADD LINE ITEMS</button>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+<ion-content padding>
+  <ion-fab top right edge #fab1>
+    <button ion-fab mini (click)="submit()">
+      <ion-icon name="md-checkmark"></ion-icon>
+    </button>
+  </ion-fab>
   <ion-list>
+    <button ion-item no-padding (click)="goto('CustomerSearchPage')">
+      <ion-label>Customer</ion-label>
+      <div item-content *ngIf="order.customer != null">
+        <h1> {{order.customer.name}}</h1>
+        <h2>{{order.customer.address}}</h2>
+        <p>{{order.customer.telNo}}</p>
+      </div>
+    </button>
+    <ion-item no-padding>
+      <ion-label>Date</ion-label>
+      <ion-datetime displayFormat="MMM DD, YYYY" [(ngModel)]="order.orderDate"></ion-datetime>
+    </ion-item>
+  </ion-list>
+  <ion-fab bottom right #fab1>
+    <button ion-fab mini (click)="goto('SalesOrderItemPage')">
+      <ion-icon name="md-add"></ion-icon>
+    </button>
+  </ion-fab>
+  <ion-list>
+
     <ion-item *ngFor="let item of order.items">
-      <h2>{{ item.code }}</h2>
-      <p>{{item.description}}</p>
+      <h2>{{ item.description }}</h2>
+      <p>{{item.itemCode}} | Quantity : {{item.qty}} | Unit Price: {{item.unitPrice}}</p>
+      
       <ion-note item-end>{{item.subTotal}}</ion-note>
     </ion-item>
-    <ion-item>
-      <strong>Total : {{order.total}}</strong>
+    <ion-item *ngIf="order.items.length > 0">
+      <h1>Sub Total</h1>
+      <ion-note item-end><strong>{{order.total}}</strong></ion-note>
     </ion-item>
   </ion-list>
 </ion-content>
+<!-- <ion-footer>
+  <strong>Total : {{order.total}}</strong>
+</ion-footer> -->

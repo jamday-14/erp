@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events, LoadingController } from 'ionic-angular';
+import { Maintenance } from '../../providers';
+import { ListSize } from '..';
 
 /**
  * Generated class for the CustomerSearchPage page.
@@ -15,32 +17,49 @@ import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 })
 export class CustomerSearchPage {
   customers: any;
+  currentIndex = 0;
+  listSize = ListSize;
+  records: any;
+  items: any = [];
+  
+  loader = this.loadingCtrl.create({
+    content: "Loading. Please wait..."
+  });
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private events: Events) {
-    this.initialize();
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private events: Events,
+    private maintenanceProvider: Maintenance,
+    public loadingCtrl: LoadingController) {
+    this.getData();
   }
 
-  initialize(): any {
-    this.customers = [
-      'Jamal',
-      'Jimmy',
-      'Arnold',
-      'Bryan'
-    ];
+  private getData() {
+    this.loader.present();
+    this.maintenanceProvider.queryCustomers().subscribe((resp) => {
+      this.records = resp;
+      this.items = this.records.slice(this.currentIndex, this.listSize);
+      this.items.forEach(x => x.expandable = false);
+      this.loader.dismiss();
+    }, (err) => {
+      this.loader.dismiss();
+    });
   }
   
-  getCustomers(ev) {
-    // Reset items back to all of the items
-    this.initialize();
+  getItems(ev) {
 
+    this.items = this.records.slice(this.currentIndex, this.listSize);
     // set val to the value of the ev target
     var val = ev.target.value;
 
     // if the value is an empty string don't filter the items
-    if (val && val.trim() != '') {
-      this.customers = this.customers.filter((item) => {
-        return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
+    if (val && val.trim() != '' && val.length > 2) {
+      this.items = this.records
+        .filter((item) => {
+          return (item.name.toLowerCase().indexOf(val.toLowerCase()) > -1 || (item.contactPerson && item.contactPerson.toLowerCase().indexOf(val.toLowerCase()) > -1));
+        })
+        .slice(this.currentIndex, this.listSize);
     }
   }
 

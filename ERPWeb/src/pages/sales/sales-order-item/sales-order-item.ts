@@ -25,18 +25,16 @@ export class SalesOrderItemPage {
       qtyDR: '',
       qtyInvoice: '',
       unit: '',
-      unitPrice: 0,
-      //subTotal: this.item.qty * this.item.unitPrice
+      unitPrice: null,
     }
     this.events.subscribe('item-events', (paramsVar) => {
       this.item = paramsVar;
       this.item.qty = 0;
-      this.item.unitPrice = 0;
   })
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SalesOrderItemPage');
+    
   }
 
   goto(page: any){
